@@ -10,25 +10,22 @@ delta=1. # Separació entre punts [Amg]
 width=60. # Well Width [Amg]
 
 # Setting up Hamiltonian Matrix
-H=np.zero((nombrePunts,nombrePunts))
-offdiag=-hbar2om(2*delta**2*meff)
-for i in range: # Offdiagonal Hamiltonian elements
+H=np.zeros((nombrePunts,nombrePunts))
+offdiag=-hbar2om(2*delta pow(2)*meff)
+for i in range (nombrePunts-1): # Offdiagonal Hamiltonian elements
     H[i,i+1]=offdiag
     H[i,i-1]=offdiag
-for i in range: # Anirà de 0 anombrePunts-1
     H[i,i]=-2.*offdiag
-# Afegim el terme de la barrera
-nwidth=width/delta # Quants punts tindrà la barrera
-half=nombrePunts//2 # Divisió entera per nombrePunts imparell
-for i in range: # Anirà de 0 anombrePunts-1
-if (i<half-nwidth//2) or (i>half+nwidth//2)
-    H[i,i]+=VB # Afegir la Valence Band
+    nwidth=width/delta # Quants punts tindrà la barrera
+    half=nombrePunts%2 # Divisió entera per nombrePunts imparell
+    if i<half-nwidth%2 or i>half+nwidth%2:
+        H[i,i]+=VB # Afegir la Valence Band
 
 # Diagonalise Hamiltioian Matrix
 energies, eigenstates=np.linalg.eigh(H)
 
 # Plot
-import matplotlib.pyplot as plot
+import matplotlib.pyplot as plt
 plt.figure()
 x=np.arange(nombrePunts)*delta # Per tenir unitats de distància
 plt.plot(x,eigenstates[:,0])
