@@ -11,7 +11,7 @@ width=60. # Well Width [Amg]
 
 # Setting up Hamiltonian Matrix
 H=np.zeros((nombrePunts,nombrePunts))
-offdiag=-hbar2om(2*delta pow(2)*meff)
+offdiag=-hbar2om*pow(2*delta, 2)*meff
 for i in range (nombrePunts-1): # Offdiagonal Hamiltonian elements
     H[i,i+1]=offdiag
     H[i,i-1]=offdiag
@@ -29,3 +29,10 @@ import matplotlib.pyplot as plt
 plt.figure()
 x=np.arange(nombrePunts)*delta # Per tenir unitats de distància
 plt.plot(x,eigenstates[:,0])
+
+np.set_printoptions(precision=3)
+print(energies)
+
+print(eigenstates)
+
+print("Programa acabat")
