@@ -11,14 +11,14 @@ width=60. # Well Width [Amg]
 
 # Setting up Hamiltonian Matrix
 H=np.zeros((nombrePunts,nombrePunts))
-offdiag=-hbar2om*pow(2*delta, 2)*meff
-for i in range (nombrePunts-1): # Offdiagonal Hamiltonian elements
+offdiag=-hbar2om/(2.,meff*delta**2)
+for i in range (nombrePunts): # Offdiagonal Hamiltonian elements
     H[i,i+1]=offdiag
     H[i,i-1]=offdiag
     H[i,i]=-2.*offdiag
     nwidth=width/delta # Quants punts tindrà la barrera
-    half=nombrePunts%2 # Divisió entera per nombrePunts imparell
-    if i<half-nwidth%2 or i>half+nwidth%2:
+    half=nombrePunts//2 # Divisió entera per nombrePunts imparell
+    if i<half-nwidth//2 or i>half+nwidth//2:
         H[i,i]+=VB # Afegir la Valence Band
 
 # Diagonalise Hamiltioian Matrix
